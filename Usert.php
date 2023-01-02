@@ -62,5 +62,29 @@ class Usert
         }
         
     }
+    public function disconnect()
+    {
+        session_start();
+        session_destroy();
+        header('Location: index.php');
+    }
+    public function delete()
+    {
+        require_once('bdd_connect.php');
+        $_SESSION['login'] = $login;
+        
+        if (isset($_SESSION['login']) != null) {
+            $query = mysqli_query($connect, "DELETE FROM utilisateurs WHERE login='$login'");
+            session_destroy();
+            header('Location: index.php');
+            } else {
+                
+            }
+    }
+    public function update($login,$password,$firstname,$lastname)
+    {
+        
+    }
+    
 }
 ?>
