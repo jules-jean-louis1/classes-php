@@ -77,13 +77,27 @@ class Usert
             $query = mysqli_query($connect, "DELETE FROM utilisateurs WHERE login='$login'");
             session_destroy();
             header('Location: index.php');
-            } else {
-                
             }
     }
     public function update($login,$password,$firstname,$lastname)
     {
-        
+        require_once('bddd_connect.php');
+        $this->login = $login;
+        $this->password = $password;
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
+        $query = mysqli_query($connect, "UPDATE utilisateurs SET login='$login', password='$password', firstname='$firstname', lastname='$lastname' WHERE login='$login'");
+
+        if ($query) {
+            $_SESSION['login'] = $_POST['uplogin'];
+            $_SESSION['email'] = $_POST['upemail'];
+            $_SESSION['firstname'] = $_POST['upfirstname'];
+            $_SESSION['lastname'] = $_POST['uplastname'];
+            echo "Modification réussie";
+        } else {
+            echo "Erreur";
+        }
+
     }
     
 }
