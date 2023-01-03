@@ -20,16 +20,18 @@ if (isset($_POST['disconnect'])) {
           <a class="nav-link" href="">Link</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <?php if (isset($_SESSION['login'])) { ?>
-            <form action="" method="post">
-                <input type="submit" value="Déconnexion" name="disconnect" class="btn btn-outline-danger">
-                <a href="profil.php" class="btn btn-outline-success"><?php echo htmlspecialchars($_SESSION['login']); ?></a>
-            </form>
-        <?php } else { ?>
-        <a href="form-connect.php" class="btn btn-outline-success" type="submit">Connexion</a>
-        <?php } ?>
-      </form>
+      <div class="d-flex">
+          <form>
+            <?php if (isset($_SESSION['login'])) { ?>
+                <form action="" method="post">
+                    <input type="submit" value="Déconnexion" name="disconnect" class="btn btn-outline-danger">
+                    <a href="profil.php" class="btn btn-outline-success"><?php echo htmlspecialchars($_SESSION['login']); ?></a>
+                </form>
+            <?php } else { ?>
+            <a href="form-connect.php" class="btn btn-outline-success" type="submit">Connexion</a>
+            <?php } ?>
+          </form>
+      </div>
     </div>
   </div>
 </nav>
