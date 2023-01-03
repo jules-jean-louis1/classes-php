@@ -10,6 +10,7 @@ if (isset($_POST['connect'])) {
 
     $user = new Userpdo();
     $user->connect($login, $password);
+    
 }
 
 ?>
