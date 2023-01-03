@@ -1,24 +1,18 @@
-<?
+<?php
+require('Usert.php');
+require('bdd_connect.php');
 session_start();
-require_once('bdd_connect.php');
-
-
-if (isset($_POST['submit'])) {
+if (isset($_POST['btn_inscrire'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
     $email = $_POST['email'];
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
-
-    echo $login;
-    echo "ooo";
-} else {
-    # code...
+    $user = new Usert();
+    $user->register($login, $password, $email, $firstname, $lastname);
 }
 
-    
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,35 +23,16 @@ if (isset($_POST['submit'])) {
     <title>Classes</title>
 </head>
 <header>
-    <?php //include('header.php'); ?>
+    <?php include('header.php'); ?>
 </header>
 <body>
-    <article>
-        <section class="container">
-            <form action="" method="post">
-                <div class="form-group">
-                    <label for="login" class="control-label col-sm-2">Login</label>
-                    <input type="text" name="login" id="login">
-                </div>
-                <div class="form-group">
-                    <label for="password" class="control-label col-sm-2">Mot de passe</label>
-                    <input type="password" name="password" id="password">
-                </div>
-                <div class="form-group">
-                    <label for="email" class="control-label col-sm-2">E-mail</label>
-                    <input type="email" name="email" id="email">
-                </div>
-                <div class="form-group">
-                    <label for="firstname" class="control-label col-sm-2">Prénom</label>
-                    <input type="text" name="firstname" id="firstname">
-                </div>
-                <div class="form-group">
-                    <label for="lastname" class="control-label col-sm-2">Nom</label>
-                    <input type="text" name="lastname" id="lastname">
-                </div>
-                <input type="submit" class="btn btn-outline-success" value="Inscription" name="submit">
-            </form>
-        </section>
-    </article>
+    <form action="" method="post">
+        <input type="text" name="login" placeholder="login">
+        <input type="password" name="password" id="" placeholder="password">
+        <input type="email" name="email" id="" placeholder="email">
+        <input type="text" name="firstname" id="" placeholder="firstname">
+        <input type="text" name="lastname" id="" placeholder="lastname">
+        <input type="submit" value="S'inscrire" name="btn_inscrire">
+    </form>
 </body>
 </html>

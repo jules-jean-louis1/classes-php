@@ -1,6 +1,6 @@
 <?php
 require('Usert.php');
-require_once('bdd_connect.php');
+//require_once('bdd_connect.php');
 
 session_start();
 

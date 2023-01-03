@@ -46,41 +46,37 @@ class Usert
     public function connect($login,$password)
     {
         require_once('bdd_connect.php');
-        session_start();
+        $this->login = $login;
+        $this->password = $password;
 
         $queryUser = mysqli_query($connect, "SELECT * FROM utilisateurs WHERE login='$login' AND password='$password'");
         $user = $queryUser->fetch_all();
 
         for ($i=0; isset($user[$i]) ; $i++) {
             if ($user[$i][1] == $login && $user[$i][2] == $password) {
-                $_SESSION['login'] = $login;
-                $_SESSION['password'] = $password;
-                $_SESSION['email'] = $email;
-                $_SESSION['firstname'] = $firstname;
-                $_SESSION['lastname'] = $lastname;
+                $_SESSION['login'] = $user[$i][1];
+                $_SESSION['password'] = $user[$i][2];
+                $_SESSION['email'] = $user[$i][3];
+                $_SESSION['firstname'] = $user[$i][4];
+                $_SESSION['lastname'] = $user[$i][5];
                 header('Location: index.php');
             } else {
                 echo "Erreur";
             }
         }
-        
     }
     public function disconnect()
     {
-        session_start();
         session_destroy();
         header('Location: index.php');
     }
     public function delete()
     {
         require_once('bdd_connect.php');
-        $_SESSION['login'] = $login;
-        
-        if (isset($_SESSION['login']) != null) {
-            $query = mysqli_query($connect, "DELETE FROM utilisateurs WHERE login='$login'");
-            session_destroy();
-            header('Location: index.php');
-            }
+
+        $query = mysqli_query($connect, "DELETE FROM utilisateurs WHERE login='".$_SESSION['login']."'");
+        session_destroy();
+        header('Location: index.php');
     }
     public function update($login,$password,$firstname,$lastname)
     {
