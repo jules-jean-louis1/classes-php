@@ -27,24 +27,38 @@ if (isset($_POST['modification'])) {
     <title>Profil</title>
 </head>
 <body>
-    <h1>Profil</h1>
-    <p>Bonjour <?php echo $_SESSION['login']; ?></p>
-    <p>Voici vos informations:</p>
-    <form action="" method="post">
-        <p>Login: <?php echo $_SESSION['login']; ?></p>
-        <input type="text" name="login">
-        <p>Password: <?php echo $_SESSION['password'] ?></p>
-        <input type="password" name="password" id="">
-        <p>Prénom: <?php echo $_SESSION['firstname']; ?></p>
-        <input type="text" name="prenon">
-        <p>Nom: <?php echo $_SESSION['lastname']; ?></p>
-        <input type="text" name="nom" id="">
-        <p>Email: <?php echo $_SESSION['email']; ?></p>
-        <input type="email" name="email" id="">
-        <input type="submit" value="Déconnexion" name="disconnect" class="btn btn-outline-danger">
-        <input type="submit" value="Suppression" name="suppression" class="btn btn-outline-warning">
-        <input type="submit" value="Modifier" name="modification" class="btn btn-outline-info">
-    </form>
-    </body>
+    <article class="container">
+        <section>
+            <h1>Profil</h1>
+            <p>Bonjour <?php echo $_SESSION['login']; ?></p>
+            <p>Voici vos informations:</p>
+            <form action="" method="post">
+                <div class="mb-3">
+                    <p>Login: <?php echo $_SESSION['login']; ?></p>
+                    <input type="text" name="login" placeholder="Login">
+                </div>
+                <div class="mb-3">
+                    <p>Password: <?php echo $_SESSION['password'] ?></p>
+                    <input type="password" name="password" id="" placeholder="Password">
+                </div>
+                <div class="mb-3">
+                    <p>Prénom: <?php echo $_SESSION['firstname']; ?></p>
+                    <input type="text" name="prenon" placeholder="Prénom">
+                </div>
+                <div class="mb-3">
+                    <p>Nom: <?php echo $_SESSION['lastname']; ?></p>
+                    <input type="text" name="nom" id="" placeholder="Nom">
+                </div>
+                <div class="mb-3">
+                    <p>Email: <?php echo $_SESSION['email']; ?></p>
+                    <input type="email" name="email" id="" placeholder="email">
+                </div>
+                <input type="submit" value="Déconnexion" name="disconnect" class="btn btn-outline-danger">
+                <input type="submit" value="Suppression" name="suppression" class="btn btn-outline-warning">
+                <input type="submit" value="Modifier" name="modification" class="btn btn-outline-info">
+            </form>
+        </section>
+    </article>
+</body>
 </html>
 <?php } else { header('Location: index.php');  } ?>
