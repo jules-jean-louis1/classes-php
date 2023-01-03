@@ -43,7 +43,7 @@ class Usert
         return array($login, $password, $email, $firstname, $lastname);
     }
 
-    public function connect($login,$paswword)
+    public function connect($login,$password)
     {
         require_once('bdd_connect.php');
         session_start();
