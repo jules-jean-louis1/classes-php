@@ -26,9 +26,9 @@ if (isset($_POST['isconnect'])) {
 }
 if (isset($_POST['getallinfos'])) {
     $user = new Usert();
-    $user->getallinfos();
-    
+    $infos = $user->getallinfos();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -70,6 +70,15 @@ if (isset($_POST['getallinfos'])) {
                     </div>
                     <div class="mb-3">
                         <input type="submit" value="Infos ?" name="getallinfos" class="btn btn-outline-dark">
+                        <div>
+                            <ul>
+                            <?php if (isset($infos)) {
+                                foreach ($infos as $info) { ?>
+                                    <li><?php echo $info ; ?></li> 
+                               <?php }
+                            } ?>
+                            </ul>
+                        </div>
                     </div>
                 </form>
             </div>

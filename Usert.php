@@ -110,9 +110,7 @@ class Usert
 
         if (isset($_SESSION['login']) != null) {
             $liste = array($_SESSION['login'], $_SESSION['email'], $_SESSION['firstname'], $_SESSION['lastname']);
-            foreach ($liste as $info) {
-                echo $info;
-            }
+            return $liste;
         } else {
             return false;
         }
