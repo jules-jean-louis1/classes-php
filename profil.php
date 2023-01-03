@@ -32,6 +32,9 @@ if (isset($_POST['modification'])) {
     <title>Profil</title>
 </head>
 <body>
+    <header>
+        <?php include('header.php'); ?>
+    </header>
     <article class="container">
         <section>
             <h1>Profil</h1>
