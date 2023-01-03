@@ -35,13 +35,6 @@ class Userpdo
             'firstname' => $firstname,
             'lastname' => $lastname
         ));
-
-        $query_check = $this->pdo->prepare("SELECT login FROM utilisateurs WHERE login = :login");
-        $query_check->execute(array(
-            'login' => $login
-        ));
-        
-
     }
 }
 ?>
