@@ -37,6 +37,9 @@ class Usert
                 $errors[] = "Erreur";
             }
         }
+        foreach ($errors as $error) {
+            echo $error;
+        }
         return array($login, $password, $email, $firstname, $lastname);
     }
 

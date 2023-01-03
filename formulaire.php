@@ -1,5 +1,7 @@
 <?php
-
+require('Usert.php');
+require('bdd_connect.php');
+session_start();
 if (isset($_POST['btn_inscrire'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
