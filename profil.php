@@ -12,6 +12,10 @@ if (isset($_POST['suppression'])) {
     $User = new Usert();
     $User->delete();
 }
+if (isset($_POST['modification'])) {
+    $User = new Usert();
+    $User->update($_POST['login'],$_POST['password'],$_POST['prenon'],$_POST['nom']);
+}
 ?>
 
 <html lang="fr">
@@ -37,10 +41,9 @@ if (isset($_POST['suppression'])) {
         <input type="text" name="nom" id="">
         <p>Email: <?php echo $_SESSION['email']; ?></p>
         <input type="email" name="email" id="">
-    </form>
-    <form action="" method="post">
         <input type="submit" value="Déconnexion" name="disconnect" class="btn btn-outline-danger">
         <input type="submit" value="Suppression" name="suppression" class="btn btn-outline-warning">
+        <input type="submit" value="Modifier" name="modification" class="btn btn-outline-info">
     </form>
     </body>
 </html>
