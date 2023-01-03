@@ -74,7 +74,7 @@ if (isset($_POST['getallinfos'])) {
                             <ul>
                             <?php if (isset($infos)) {
                                 foreach ($infos as $info) { ?>
-                                    <li><?php echo $info ; ?></li> 
+                                    <li><?php echo $info ; ?></li>
                                <?php }
                             } ?>
                             </ul>
