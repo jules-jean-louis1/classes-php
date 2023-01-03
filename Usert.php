@@ -78,23 +78,22 @@ class Usert
         session_destroy();
         header('Location: index.php');
     }
-    public function update($login,$password,$firstname,$lastname)
+    public function update($login, $password, $email, $firstname, $lastname)
     {
-        require_once('bddd_connect.php');
+        require_once('bdd_connect.php');
         $this->login = $login;
         $this->password = $password;
+        $this->email = $email;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
-        $query = mysqli_query($connect, "UPDATE utilisateurs SET login='$login', password='$password', firstname='$firstname', lastname='$lastname' WHERE login='$login'");
+        $query = mysqli_query($connect, "UPDATE utilisateurs SET login='$login', password='$password', email='$email', firstname='$firstname', lastname='$lastname' WHERE login='$login'");
 
         if ($query) {
             $_SESSION['login'] = $_POST['uplogin'];
+            $_SESSION['password'] = $_POST['uppassword'];
             $_SESSION['email'] = $_POST['upemail'];
-            $_SESSION['firstname'] = $_POST['upfirstname'];
-            $_SESSION['lastname'] = $_POST['uplastname'];
-            echo "Modification réussie";
-        } else {
-            echo "Erreur";
+            $_SESSION['firstname'] = $_POST['upprenom'];
+            $_SESSION['lastname'] = $_POST['upnom'];
         }
     }
     public function isConnected()
