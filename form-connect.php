@@ -4,11 +4,18 @@ require('Usert.php');
 
 session_start();
 
+$errors = [];
+
 if (isset($_POST['submit'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
     $user = new Usert();
     $user->connect($login, $password);
+    if ($user) {
+        $errors[] = "Vous êtes connecté";
+    } else {
+        $errors[] = "Mtp ou login incorrect";
+    }
 }
 
 
@@ -38,6 +45,11 @@ if (isset($_POST['submit'])) {
                     <input type="password" name="password" id="password" class="form-control" required>
                 </div>
                 <input type="submit" class="btn btn-outline-success" value="Connexion" name="submit">
+                <div class="error">
+                    <?php foreach($errors as $message):?>
+                        <div style="color: red;"><?php echo htmlspecialchars($message); ?></div>
+                    <?php endforeach; ?>
+                </div>
             </form>
         </section>
     </article>

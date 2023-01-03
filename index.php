@@ -2,6 +2,8 @@
 require('Usert.php');
 require('bdd_connect.php');
 session_start();
+$errors = [];
+
 if (isset($_POST['btn_inscrire'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
@@ -10,8 +12,23 @@ if (isset($_POST['btn_inscrire'])) {
     $lastname = $_POST['lastname'];
     $user = new Usert();
     $user->register($login, $password, $email, $firstname, $lastname);
+    $errors['register'] = "Vous êtes inscrit !";
+} else {
+    $errors['register'] = "Vous n'êtes pas inscrit !";
 }
 
+if (isset($_POST['isconnect'])) {
+    $user = new Usert();
+    $user->isConnected();
+    $errors['isconnect'] = "Vous êtes connecté !";
+} else {
+    $errors['isconnect'] = "Vous n'êtes pas connecté !";
+}
+if (isset($_POST['getallinfos'])) {
+    $user = new Usert();
+    $user->getallinfos();
+    
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -26,13 +43,42 @@ if (isset($_POST['btn_inscrire'])) {
     <?php include('header.php'); ?>
 </header>
 <body>
-    <form action="" method="post">
-        <input type="text" name="login" placeholder="login">
-        <input type="password" name="password" id="" placeholder="password">
-        <input type="email" name="email" id="" placeholder="email">
-        <input type="text" name="firstname" id="" placeholder="firstname">
-        <input type="text" name="lastname" id="" placeholder="lastname">
-        <input type="submit" value="S'inscrire" name="btn_inscrire">
-    </form>
+    <article class="container">
+        <section>
+            <form action="" method="post">
+                <div class="mb-3">
+                    <input type="text" name="login" placeholder="login" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <input type="password" name="password" id="" placeholder="password" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <input type="email" name="email" id="" placeholder="email" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="firstname" id="" placeholder="firstname" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="lastname" id="" placeholder="lastname" class="form-control">
+                </div>
+                <input type="submit" value="S'inscrire" name="btn_inscrire" class="btn btn-primary" >
+            </form>
+            <div style="padding-top: 10px;">
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <input type="submit" name="isconnect" value="isConnected" class="btn btn-outline-dark">
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" value="Infos ?" name="getallinfos" class="btn btn-outline-dark">
+                    </div>
+                </form>
+            </div>
+            <div class="error">
+                <?php foreach($errors as $message):?>
+                    <div><?php echo htmlspecialchars($message); ?></div>
+                <?php endforeach; ?>
+            </div>
+        </section>
+    </article>
 </body>
 </html>

@@ -106,8 +106,13 @@ class Usert
     }
     public  function getALLInfos()
     {
+        $liste = array();
+
         if (isset($_SESSION['login']) != null) {
-            return array($_SESSION['login'], $_SESSION['email'], $_SESSION['firstname'], $_SESSION['lastname']);
+            $liste = array($_SESSION['login'], $_SESSION['email'], $_SESSION['firstname'], $_SESSION['lastname']);
+            foreach ($liste as $info) {
+                echo $info;
+            }
         } else {
             return false;
         }
