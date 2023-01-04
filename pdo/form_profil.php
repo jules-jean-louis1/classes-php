@@ -5,6 +5,7 @@ session_start();
 if (isset($_POST['deconnexion'])) {
     $user = new Userpdo();
     $user->disconnect();
+    header ('Location: form_connexion.php');
 }
 if (isset($_POST['suppression'])) {
     $user = new Userpdo();
@@ -14,7 +15,6 @@ if (isset($_POST['suppression'])) {
 if (isset($_POST['update'])) {
     $user = new Userpdo();
     $user->update($_POST['login'], $_POST['password'], $_POST['email'], $_POST['prenom'], $_POST['nom']);
-    header ('Location: index.php');
 }
 ?>
 <DOCTYPE html>
@@ -49,7 +49,7 @@ if (isset($_POST['update'])) {
                     <?php if (isset($_SESSION['login']) != null) { ?>
                         <input type="submit" name="deconnexion" value="Se déconnecter"  class="btn btn-danger">
                     <?php } else { ?>
-                    <input type="submit" name="login" value="Connexion"  class="btn btn-success">
+                    <a href="form_connexion.php" class="btn btn-success">Connexion</a>
                     <?php } ?>
                 </form>
             </div>

@@ -97,6 +97,12 @@ class Userpdo
         $query = $this->pdo->prepare($sql);
         $query->execute(['login' => $login, 'password' => $password, 'email' => $email, 'firstname' => $firstname, 'lastname' => $lastname]);
         
+        $_SESSION['login'] = $_POST['login'];
+        $_SESSION['password'] = $_POST['password'];
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['firstname'] = $_POST['prenom'];
+        $_SESSION['lastname'] = $_POST['nom'];
+
     }
     public function isConnected()
     {
