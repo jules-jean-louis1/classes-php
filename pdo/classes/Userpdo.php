@@ -93,16 +93,10 @@ class Userpdo
         $this->firstname = $firstname;
         $this->lastname = $lastname;
 
-        $query = $this->pdo->prepare("UPDATE utilisateurs SET login=:login, password=:password, email=:email, firstname=:firstname, lastname=:lastname WHERE login=:login");
-        $query->execute(
-            array(
-                'login' => $login,
-                'password' => $password,
-                'email' => $email,
-                'firstname' => $firstname,
-                'lastname' => $lastname
-            )
-        );
+        $sql = "UPDATE utilisateurs SET login = :login, password = :password, email = :email, firstname = :firstname, lastname = :lastname WHERE login = :login";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(['login' => $login, 'password' => $password, 'email' => $email, 'firstname' => $firstname, 'lastname' => $lastname]);
+        
     }
     public function isConnected()
     {

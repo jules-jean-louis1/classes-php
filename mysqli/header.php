@@ -25,8 +25,8 @@ if (isset($_POST['disconnect'])) {
                 <?php if (isset($_SESSION['login'])) { ?>
                     <form action="" method="post">
                         <input type="submit" value="Déconnexion" name="disconnect" class="btn btn-outline-danger">
-                        <a href="profil.php" class="btn btn-outline-success"><?php echo htmlspecialchars($_SESSION['login']); ?></a>
-                    </form>
+                      </form>
+                      <a href="profil.php" class="btn btn-outline-success"><?php echo htmlspecialchars($_SESSION['login']); ?></a>
                 <?php } else { ?>
                 <a href="form-connect.php" class="btn btn-outline-success" type="submit">Connexion</a>
                 <?php } ?>
