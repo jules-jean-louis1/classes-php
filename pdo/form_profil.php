@@ -69,5 +69,8 @@ if (isset($_POST['update'])) {
             </section>
         </article>
     </main>
+        <!-- <footer>-->
+        <?php include ('footer.php'); ?>
+    <!-- <footer>-->
 </body>
 </html>

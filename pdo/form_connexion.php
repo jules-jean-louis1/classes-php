@@ -107,5 +107,8 @@ if (isset($_POST['deconnexion'])) {
             </form>
         </section>
     </article>
+        <!-- <footer>-->
+        <?php include ('footer.php'); ?>
+    <!-- <footer>-->
 </body>
 </html>

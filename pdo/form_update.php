@@ -62,5 +62,8 @@ if (isset($_POST['modification'])) {
             </form>
         </section>
     </article>
+        <!-- <footer>-->
+        <?php include ('footer.php'); ?>
+    <!-- <footer>-->
 </body>
 </html>
