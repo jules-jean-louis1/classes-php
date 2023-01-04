@@ -60,7 +60,7 @@ if (isset($_POST['deconnexion'])) {
                 </li>
                 <li>
                     <?php if (isset($_SESSION['login']) != null) { ?>
-                        <a href="profil.php" class="btn btn-warning"><?php echo $_SESSION['login']; ?></a>
+                        <a href="form_profil.php" class="btn btn-warning"><?php echo $_SESSION['login']; ?></a>
                     <?php } else { ?>
                         <a href="form_connexion.php" class="btn btn-warning">Profil</a>
                     <?php } ?>
