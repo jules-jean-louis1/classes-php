@@ -81,8 +81,9 @@ class Userpdo
     }
     public function delete()
     {
-        $query = $this->pdo->prepare("DELETE FROM utilisateurs WHERE login = :login");
-        $query->execute(array('login' => $_SESSION['login']));
+        $sql = "DELETE FROM utilisateurs WHERE login = :login";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(['login' => $_SESSION['login']]);
     }
     public function update($login, $password, $email, $firstname, $lastname)
     {
