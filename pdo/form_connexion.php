@@ -6,7 +6,7 @@ require_once('./classes/Userpdo.php');
 
 $valid = 0;
 $errors = [];
-
+$message = [];
 if (isset($_POST['connect'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
@@ -23,12 +23,18 @@ if (isset($_POST['connect'])) {
         $user = new Userpdo();
         $user->connect($login, $password);
         if ($user) {
-            $errors[] = "Vous êtes connecté";
             $errors[] = "Bonjour" . " " . $_SESSION['login'];
+            $message = $user->connect($login, $password);
         } else {
             $errors[] = "Mtp ou login incorrect";
         }
     }
+}
+
+if (isset($_POST['deconnexion'])) {
+    $user = new Userpdo();
+    $user->disconnect();
+    $message = $user->disconnect();
 }
 
 ?>
@@ -43,7 +49,7 @@ if (isset($_POST['connect'])) {
     <title>PDO connexion</title>
 </head>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -52,9 +58,20 @@ if (isset($_POST['connect'])) {
                 <li>
                     <a href="" class="nav-link active"></a>
                 </li>
+                <li>
+                    <?php if (isset($_SESSION['login']) != null) { ?>
+                        <a href="profil.php" class="btn btn-warning"><?php echo $_SESSION['login']; ?></a>
+                    <?php } else { ?>
+                        <a href="form_connexion.php" class="btn btn-warning">Profil</a>
+                    <?php } ?>
+                </li>
             </ul>
             <form action="" method="post" class="d-flex">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <?php if (isset($_SESSION['login']) != null) { ?>
+                    <input type="submit" name="deconnexion" value="Se déconnecter"  class="btn btn-danger">
+                <?php } else { ?>
+                <input type="submit" name="login" value="Connexion"  class="btn btn-success">
+                <?php } ?>
             </form>
         </div>
     </nav>
@@ -81,6 +98,10 @@ if (isset($_POST['connect'])) {
                     <?php    }
                     }
                     ?>
+                    <?php
+                        foreach ($message as $value) { ?>
+                        <li><?php echo htmlspecialchars($value); ?></li>
+                    <?php    } ?>
                     </ul>
                 </div>
             </form>

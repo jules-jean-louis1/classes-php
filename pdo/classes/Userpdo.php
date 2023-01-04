@@ -72,9 +72,12 @@ class Userpdo
         
     }
     public function disconnect()
-    {
+    {   
+        session_start();
+        $errors = array();
         session_destroy();
-        echo "Vous êtes déconnecté";
+        $errors[] = "Vous êtes déconnecté";
+        return $errors;
     }
     public function delete()
     {
