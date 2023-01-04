@@ -17,6 +17,14 @@ class Userpdo
             echo 'Connexion échouée : ' . $e->getMessage();
             exit;
         }
+        // connexion à la base de données pour plesk
+        /* try {
+            $this->pdo = new PDO('mysql:host=localhost;dbname=jules-jean-louis_classes', 'jjl-classes', 'wAr6r6$81');
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo 'Connexion échouée : ' . $e->getMessage();
+            exit;
+        } */
     }
 
     public function register($login,$password,$email,$firstname,$lastname)
