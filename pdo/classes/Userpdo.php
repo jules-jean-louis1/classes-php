@@ -102,5 +102,35 @@ class Userpdo
             )
         );
     }
+    public function isConnected()
+    {
+        if (isset($_SESSION['login']) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function getALLInfos()
+    {
+        if (isset($_SESSION['login'])) {
+            return array(
+                'login' => $_SESSION['login'],
+                'password' => $_SESSION['password'],
+                'email' => $_SESSION['email'],
+                'firstname' => $_SESSION['firstname'],
+                'lastname' => $_SESSION['lastname']
+            );
+        } else {
+            return false;
+        }
+    }
+    public function getLogin()
+    {
+        if (isset($_SESSION['login'])) {
+            return $_SESSION['login'];
+        } else {
+            return false;
+        }
+    }
 }
 ?>
