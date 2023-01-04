@@ -106,11 +106,14 @@ class Userpdo
     }
     public function isConnected()
     {
+        $errors = array();
+
         if (isset($_SESSION['login']) != null) {
-            return true;
+            $errors[] = "Vous êtes connecté";
         } else {
-            return false;
+            $errors[] = "Vous n'êtes pas connecté";
         }
+        return $errors;
     }
     public function getALLInfos()
     {

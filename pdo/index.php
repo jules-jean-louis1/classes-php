@@ -1,5 +1,8 @@
 <?php
 require_once('./classes/Userpdo.php');
+session_start();
+$message = [];
+
 
 if (isset($_POST['btn_inscrire'])) {
     $login = $_POST['login'];
@@ -20,6 +23,11 @@ if (isset($_POST['connect'])) {
     $user->connect($login, $password);
 }
 
+if (isset($_POST['loginco'])) {
+    $user = new Userpdo();
+    $user->isConnected();
+    $message = $user->isConnected();
+}
 ?>
 
 <html lang="fr">
@@ -37,6 +45,11 @@ if (isset($_POST['connect'])) {
 <!-- <header>-->
     <article style="padding-top: 200px;">
         <section class="container">
+            <div class="row">
+                <div class="text-center">
+                    <h1>Inscription</h1>
+                </div>
+            </div>
             <form action="" method="post">
                 <div class="mb-3">
                     <input type="text" name="login" placeholder="login" class="form-control">
@@ -55,6 +68,17 @@ if (isset($_POST['connect'])) {
                 </div>
                 <div class="mb-3">
                     <input type="submit" name="btn_inscrire" value="S'inscrire" class="btn btn-primary">
+                </div>
+            </form>
+            <form action="" method="post">
+                <div class="mb-3">
+                    <input type="submit" name="loginco" value="isconnect ?" class="btn btn-dark">
+                    <ul>
+                    <?php
+                        foreach ($message as $value) { ?>
+                        <li><?php echo htmlspecialchars($value); ?></li>
+                    <?php    } ?>
+                    </ul>
                 </div>
             </form>
         </section>

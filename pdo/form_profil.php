@@ -31,11 +31,11 @@ if (isset($_POST['update'])) {
 <?php include ('header.php'); ?>
 <!-- <header>-->
     <main>
-        <article>
-            <section>
+        <article style="padding-top: 200px;">
+            <section class="align-self-center">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="text-center">
                             <h1>Profil</h1>
                         </div>
                     </div>
