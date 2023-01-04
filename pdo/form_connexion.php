@@ -60,7 +60,7 @@ if (isset($_POST['connect'])) {
     </nav>
 </header>
 <body>
-    <article>
+    <article style="padding-top:150px;">
         <section class="container">
             <form action="" method="post">
                 <div class="mb-3">
