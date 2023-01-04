@@ -9,12 +9,12 @@ if (isset($_POST['deconnexion'])) {
 if (isset($_POST['suppression'])) {
     $user = new Userpdo();
     $user->delete();
-    header ('Location: form_connexion.php');
+    header ('Location: index.php');
 }
 if (isset($_POST['update'])) {
     $user = new Userpdo();
     $user->update($_POST['login'], $_POST['password'], $_POST['email'], $_POST['prenom'], $_POST['nom']);
-    header ('Location: form_connexion.php');
+    header ('Location: index.php');
 }
 ?>
 <DOCTYPE html>
