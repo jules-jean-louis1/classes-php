@@ -4,14 +4,38 @@ session_start();
 
 require_once('./classes/Userpdo.php');
 
+$valid = 0;
+$errors = [];
+
 if (isset($_POST['connect'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
-
-    $user = new Userpdo();
-    $user->connect($login, $password);
-    
+    $valid = 1;
+    if (empty($login)) {
+        $errors[] = "Veuillez renseigner un login";
+        $valid = 0;
+    }
+    if (empty($password)) {
+        $errors[] = "Veuillez renseigner un mot de passe";
+        $valid = 0;
+    }
+    if ($valid == 1) {
+        $user = new Userpdo();
+        $user->connect($login, $password);
+        if ($user) {
+            $errors[] = "Vous êtes connecté";
+            $errors[] = "Bonjour" . " " . $_SESSION['login'];
+        } else {
+            $errors[] = "Mtp ou login incorrect";
+        }
+    }
 }
+/* $pdo = new PDO('mysql:host=localhost;dbname=classes', 'root', '');
+$sql = "SELECT * FROM utilisateurs WHERE login = 'toto' AND password = 'toto'";
+$query = $pdo->query($sql);
+$user = $query->fetchall(PDO::FETCH_ASSOC);
+var_dump($user); */
+
 
 ?>
 
@@ -36,6 +60,17 @@ if (isset($_POST['connect'])) {
                 </div>
                 <div class="mb-3">
                     <input type="submit" name="connect" value="Se connecter" class="btn btn-primary">
+                </div>
+                <div class="mb-3">
+                    <ul>
+                    <?php
+                    if (isset($errors)) {
+                        foreach ($errors as $error) { ?>
+                        <li><?php echo htmlspecialchars($error); ?></li>
+                    <?php    }
+                    }
+                    ?>
+                    </ul>
                 </div>
             </form>
         </section>

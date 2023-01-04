@@ -49,14 +49,11 @@ class Userpdo
     {
         $this->login = $login;
         $this->password = $password;
+        $errors = array();
 
-        $query = $this->pdo->prepare("SELECT * FORM utilisateurs WHERE login = :login AND password = :password");
-        $query->execute(
-            array(
-                'login' => $login,
-                'password' => $password
-            )
-        );
+        $sql = "SELECT * FROM utilisateurs WHERE login = :login AND password = :password";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(['login' => $login, 'password' => $password]);
         $user = $query->fetchall(PDO::FETCH_ASSOC);
 
         for ($i=0; isset($user[$i]) ; $i++) {
@@ -66,11 +63,12 @@ class Userpdo
                 $_SESSION['email'] = $user[$i]['email'];
                 $_SESSION['firstname'] = $user[$i]['firstname'];
                 $_SESSION['lastname'] = $user[$i]['lastname'];
-                echo "Vous êtes connecté";
+                $errors[] = "Vous êtes connecté";
             } else {
-                echo "Erreur de connexion";
+                $errors[] = "Erreur de connexion";
             }
         }
+        return $errors;
         
     }
     public function disconnect()
