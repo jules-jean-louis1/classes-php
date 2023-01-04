@@ -30,12 +30,6 @@ if (isset($_POST['connect'])) {
         }
     }
 }
-/* $pdo = new PDO('mysql:host=localhost;dbname=classes', 'root', '');
-$sql = "SELECT * FROM utilisateurs WHERE login = 'toto' AND password = 'toto'";
-$query = $pdo->query($sql);
-$user = $query->fetchall(PDO::FETCH_ASSOC);
-var_dump($user); */
-
 
 ?>
 
@@ -48,6 +42,23 @@ var_dump($user); */
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>PDO connexion</title>
 </head>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a href="" class="nav-link active"></a>
+                </li>
+                <li>
+                    <a href="" class="nav-link active"></a>
+                </li>
+            </ul>
+            <form action="" method="post" class="d-flex">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</header>
 <body>
     <article>
         <section class="container">
