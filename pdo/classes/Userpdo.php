@@ -131,10 +131,34 @@ class Userpdo
     }
     public function getLogin()
     {
-        if (isset($_SESSION['login'])) {
-            return $_SESSION['login'];
+        if (isset($_SESSION['login']) != null) {
+            return array($_SESSION['login']);
         } else {
-            return false;
+            return array("Vous n'êtes pas connecté");
+        }
+    }
+    public function getEmail()
+    {
+        if (isset($_SESSION['login']) != null) {
+            return array($_SESSION['email']);
+        } else {
+            return array("Vous n'êtes pas connecté");
+        }
+    }
+    public function getFirstname()
+    {
+        if (isset($_SESSION['login']) != null) {
+            return array($_SESSION['firstname']);
+        } else {
+            return array("Vous n'êtes pas connecté");
+        }
+    }
+    public function getLastname()
+    {
+        if (isset($_SESSION['login']) != null) {
+            return array($_SESSION['lastname']);
+        } else {
+            return array("Vous n'êtes pas connecté");
         }
     }
 }

@@ -1,11 +1,33 @@
 <?php
 session_start();
 require_once './classes/Userpdo.php'; ?>
-<?php if (!isset($_SESSION['login']) != null) {?>
+<?php if (isset($_SESSION['login']) != null) {?>
 <?php
+$message = array();
+$getinfos = array();
+
 $user = new Userpdo();
 $message = $user->getALLInfos();
 $info = ['Login', 'Password', 'Email', 'Prénom', 'Nom'];
+
+
+if (isset($_POST['getlogin'])) {
+    $user = new Userpdo();
+    $getinfos = $user->getLogin();
+}
+if (isset($_POST['getemail'])) {
+    $user = new Userpdo();
+    $getinfos = $user->getEmail();
+}
+if (isset($_POST['getfname'])) {
+    $user = new Userpdo();
+    $getinfos = $user->getFirstname();
+}
+if (isset($_POST['getlname'])) {
+    $user = new Userpdo();
+    $getinfos = $user->getLastname();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +73,21 @@ $info = ['Login', 'Password', 'Email', 'Prénom', 'Nom'];
                             </ul>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center" style="padding-top: 10px;">
+                <div class="row">
+                    <form action="" method="post">
+                        <input type="submit" value="Getlogin" name="getlogin" class="btn btn-outline-primary">
+                        <input type="submit" value="Getemail" name="getemail" class="btn btn-outline-primary">
+                        <input type="submit" value="Getfirstname" name="getfname" class="btn btn-outline-primary">
+                        <input type="submit" value="Getlastname" name="getlname" class="btn btn-outline-primary">
+                        <div class="mb-3">
+                                <?php foreach ($getinfos as $getinfo) : ?>
+                                    <p><?php echo $getinfo; ?></p>
+                                <?php endforeach; ?>
+                        </div>
+                    </form>
                 </div>
             </div>
         </main>
