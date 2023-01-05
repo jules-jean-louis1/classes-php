@@ -1,6 +1,8 @@
 <?php
 session_start();
-require_once './classes/Userpdo.php';
+require_once './classes/Userpdo.php'; ?>
+<?php if (!isset($_SESSION['login']) != null) {?>
+<?php
 $user = new Userpdo();
 $message = $user->getALLInfos();
 $info = ['Login', 'Password', 'Email', 'Prénom', 'Nom'];
@@ -57,3 +59,6 @@ $info = ['Login', 'Password', 'Email', 'Prénom', 'Nom'];
     <!-- <footer>-->
 </body>
 </html>
+<?php } else {
+    header('Location: index.php');
+} ?>
