@@ -14,6 +14,7 @@
                     <li>
                         <?php if (isset($_SESSION['login']) != null) { ?>
                             <a href="form_profil.php" class="btn btn-warning"><?php echo $_SESSION['login']; ?></a>
+                            <a href="getinfos.php" class="btn btn-outline-warning">Voir les Infos</a>
                         <?php } else { ?>
                             <a href="form_connexion.php" class="btn btn-warning">Profil</a>
                         <?php } ?>
